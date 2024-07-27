@@ -30,6 +30,21 @@ let p = Point {
 let q = &p; // requires only 64 bits to store in memory of 64 bit architecture
 ```
 
+```rust
+// check the size of the variables with code
+
+let x: u128 = 1234521;
+let sizex = std::mem::size_of_val(&x);
+println!("size of x = {sizex}");    // 16 bytes
+let y: &u128 = &x;
+let sizey = std::mem::size_of_val(&y);
+println!("size of y = {sizey}");    // 8 bytes
+let z: &&u128 = &y; // same bits as y
+let sizez = std::mem::size_of_val(&z);
+println!("size of z = {sizez}");    // 8 bytes
+
+```
+
 In short every pointer variable of arbitrary types requires only 64 bits to be stored
 in 64 bit architecture.
 
